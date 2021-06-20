@@ -1,8 +1,7 @@
-import React ,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import OrderHeader from "components/Headers/OrderHeader.js";
 import { makeStyles } from '@material-ui/core/styles';
 import Itemtable from "./ItemTable";
-import axios from 'axios'
 import Button from '@material-ui/core/Button';
  import {
     Badge,
@@ -26,7 +25,7 @@ import Button from '@material-ui/core/Button';
   import AddIcon from '@material-ui/icons/Add';
  
  
-import BooksItemTable from 'views/Tables/BooksTable/BooksItemTable'
+import MessageItemTable from 'views/Tables/MessagesTable/MessageItemTable'
 import BooksModal from 'views/Tables/BooksTable/BooksModal'
 import Login from 'views/examples/Login'
   const useStyles = makeStyles((theme) => ({
@@ -45,16 +44,26 @@ import Login from 'views/examples/Login'
     borderRadius:'10px',
     boxShadow:' 0px 8px 15px rgba(0, 0, 0, 0.1)',
     display:'flex',
-    justifyContent:'space-between',
+    justifyContent:'center',
     alignItems:'center',
     padding:'10px',
     '& input':{
       width:'30%',
       height:'45px',
+      marginLeft:'30px',
       borderRadius:'10px',
       paddingLeft:'15px',
       border:'1px solid grey',
       fontSize:'14px'
+    },
+    '& button':{
+      marginLeft:'30px',
+      height:'45px',
+      width:'10%',
+      borderRadius:'16px',
+      backgroundColor:'yellowgreen',
+      border:'none',
+      color:'white'
     }
   },
   table:{
@@ -130,6 +139,18 @@ import Login from 'views/examples/Login'
       fontSize:'14px',
       color:'white'
     }
+  },
+  table_container_header_item_id:{
+    width:'15%',
+  
+    display:'flex',
+    justifyContent:'flex-start',
+    paddingLeft:'40px',
+    alignItems:'center',
+    '& h5':{
+      fontSize:'14px',
+      color:'white'
+    }
   }
 }));
 
@@ -139,7 +160,6 @@ import Login from 'views/examples/Login'
 const Users = () => {
     
  const classes = useStyles();
- const [books, setbooks] = useState([])
  const [Authuser, setAuthuser] = React.useState(false)
 
 
@@ -148,45 +168,25 @@ const Users = () => {
   let  Authentification= localStorage.getItem('userauth');
  setAuthuser(Authentification)
 }, [])
- useEffect(() => {
  
-   // this is only executed once
-   axios.get(`http://127.0.0.1:8000`)
-   .then(res => {
-     const books = res.data;
-      setbooks(books)
-      console.log(books)
-   
-   })
- }, [])
  
 
     return (
-   
-
-    
-
-
       <div>
-        
-     
-      {(Authuser
-        
-        
-        && 
-        
+        {(Authuser && 
         
         <div>
         <OrderHeader />
         <div className={classes.root}>
           <div className={classes.newuser}>
-        <BooksModal/>
+       
           </div>
 
           <div className={classes.addnewuser}>
-            <input type="text" placeholder="Title" />
-            <input type="text" placeholder="Author" />
-            <input type="text" placeholder="Category" />
+            <input type="text" placeholder="Student" />
+            <input type="text" placeholder="Book" />
+            <button>Search</button>
+           
           </div>
 
           <div className={classes.table}>
@@ -199,55 +199,55 @@ const Users = () => {
             <div className={classes.table_container}>
               <div className={classes.table_container_header}>
 
-              <div className={classes.table_container_header_item}>
-                <h5>Book</h5>
+              <div className={classes.table_container_header_item_id}>
+                <h5>id</h5>
               </div>
               <div className={classes.table_container_header_item}>
-                <h5>Created</h5>
+                <h5>Emprunt Date</h5>
               </div>
               <div className={classes.table_container_header_item}>
-                <h5>Title</h5>
+                <h5>Return Date</h5>
               </div>
               <div className={classes.table_container_header_item}>
-                <h5>Page</h5>
+                <h5>Student</h5>
               </div>
               <div className={classes.table_container_header_item}>
-                <h5>Author</h5>
+                <h5>Book Title</h5>
               </div>
-              <div className={classes.table_container_header_item}>
-                <h5>Qunatity</h5>
-              </div>
+              
+              
              
               <div className={classes.table_container_header_item}>
                 <h5>Actions</h5>
               </div>
 
               </div>
-              {books.map((book) => (
-        <div  >   <BooksItemTable Ordernumber={2} Customerid={book.pk} CustomerName={'Aziz'}/></div>
-      ))}
-              
-        
-        
+         <MessageItemTable Ordernumber={2} Customerid={1} CustomerName={'Aziz'} Messagess={'Hello give me book'}/>
+         <MessageItemTable Ordernumber={1}  Customerid={2} CustomerName={'Yacin'} Messagess={'Hello give me book'}/>
+         <MessageItemTable Ordernumber={6}  Customerid={3} CustomerName={'Alan'}  Messagess={'Hello give me book'}/>
+         <MessageItemTable Ordernumber={3}  Customerid={4} CustomerName={'Tina'}  Messagess={'Hello give me book'}/>
 
             </div>
           </div>
         </div>
       </div>
-     
+   
         
         
+        ) 
         
-        ) || 
+        ||
+      
+        <div 
         
-        <>
-        <OrderHeader/> 
+        >
+          <OrderHeader/> 
         <div style={{ display:'flex',justifyContent:'center',}}>
         <Login/> 
         </div>
-        </>
-         }
-
+        </div>}
+      
+   
       </div>
     );
 }

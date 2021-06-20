@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import Switch from '@material-ui/core/Switch'
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -105,6 +106,20 @@ export default function TransitionsModal() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+   const [name, setname] = useState('aaa')
+   const [title, settitle] = useState('aaaa')
+   const [subtitle, setsubtitle] = useState('aaa')
+   const [isbn, setmeisbn] = useState('aaaa')
+   const [Description, setDescription] = useState('aaa')
+   const [pictur_url, setpictur_url] = useState('aaaa')
+
+  const createbook =(title,subtitle,isbn,Description,pictur_url)=>{
+    axios.post(`http://127.0.0.1:8000/Bookcreate`,  {title:title,subtitle:subtitle,isbn:isbn,description:Description,pictur_url:pictur_url} )
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+  }
   return (
     <div>
       <Button
@@ -115,6 +130,8 @@ export default function TransitionsModal() {
       >
         New Book
       </Button>
+
+      
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -132,26 +149,26 @@ export default function TransitionsModal() {
             <h3>New Book</h3>
             <div className={classes.form}>
            <div  className={classes.form_item}>
-             <input type='text' placeholder='Book Name'/>
-             <input type='text' placeholder='ISBN'/>
+             <input type='text' placeholder=' Name'  />
+             <input type='text' placeholder='Title' onChange={event => settitle(event.target.value)} />
              </div> 
            <div  className={classes.form_item}>
-           <input type='text' placeholder='Subtitle'/>
-           <input type='text' placeholder='Author'/>
+           <input type='text' placeholder='Subtitle' onChange={event => setsubtitle(event.target.value)}/>
+           <input type='text' placeholder='Author' onChange={event => setmeisbn(event.target.value)}/>
              </div> 
            <div  className={classes.form_item}>
-           <input type='text' placeholder='Date Released'/>
-           <input type='text' placeholder='Book Name'/>
+           <input type='text' placeholder='Date Released' onChange={event => setname(event.target.value)}/>
+           <input type='text' placeholder='Book picture' onChange={event => setpictur_url(event.target.value)}/>
              </div> 
            <div  className={classes.description_item}>
-           <input type='text' placeholder='Description'  className={classes.description}/>
+           <input type='text' placeholder='Description'  onChange={event => setDescription(event.target.value)}  className={classes.description}/>
              
              </div> 
            
             </div>
             <div className={classes.cancelsave}>
               <button  onClick={handleClose}>Cancel</button>
-              <button>Save</button>
+              <button onClick={()=>createbook(title,subtitle,isbn,Description,pictur_url)}>Save</button>
             </div>
           </div>
         </Fade>

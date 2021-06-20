@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React,{useState} from "react";
 
 // reactstrap components
 import {
@@ -34,6 +34,20 @@ import {
 } from "reactstrap";
 
 const Login = () => {
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  console.log(email)
+  console.log(password)
+  const Login=(email,password)=>{
+    if (email=='oussama' && password=='realpassword')
+    {
+      localStorage.setItem('userauth', true);
+      window. location. reload()
+    }
+   else {
+    localStorage.setItem('userauth', false);
+   }
+  }
   return (
     <>
       <Col lg="5" md="7">
@@ -91,8 +105,8 @@ const Login = () => {
                       <i className="ni ni-email-83" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
-                    placeholder="Email"
+                  <Input   onChange={event =>setemail (event.target.value)}
+                    placeholder="Email" 
                     type="email"
                     autoComplete="new-email"
                   />
@@ -105,7 +119,7 @@ const Login = () => {
                       <i className="ni ni-lock-circle-open" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
+                  <Input  onChange={event => setpassword(event.target.value)}
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
@@ -126,7 +140,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button onClick={()=>Login(email,password)} className="my-4" color="primary" type="button">
                   Sign in
                 </Button>
               </div>

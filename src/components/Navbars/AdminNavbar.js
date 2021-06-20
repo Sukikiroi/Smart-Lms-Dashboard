@@ -36,6 +36,10 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
+  const logout =()=>{
+    localStorage.clear('userauth')
+    window.location.reload()
+  }
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -46,15 +50,15 @@ const AdminNavbar = (props) => {
           >
             {props.brandText}
           </Link>
-          <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <Form   className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <FormGroup className="mb-0">
-              <InputGroup className="input-group-alternative">
+              <InputGroup className="input-group-alternative" style={{border:'2px solid DarkSlateBlue',color:'black'}}>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <i className="fas fa-search" />
+                    <i className="fas fa-search" style={{color:'DarkSlateBlue'}}/>
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="Search" type="text" />
+                <Input placeholder="Search" type="text" style={{color:'balck'}} />
               </InputGroup>
             </FormGroup>
           </Form>
@@ -99,7 +103,7 @@ const AdminNavbar = (props) => {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem href="#pablo" onClick={logout}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

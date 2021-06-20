@@ -24,6 +24,8 @@ import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import Books from 'views/examples/Books'
 import AgentProfile from 'views/examples/AgentProfile'
+import Messages from 'views/examples/Messages'
+import Emprunts from "views/examples/Emprunts";
 var routes = [
   {
     path: "/index",
@@ -57,22 +59,16 @@ var routes = [
     path: "/Messages",
     name: "Messages",
     icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    component: Messages,
     layout: "/admin",
   },
   {
-    path: "/login",
-    name: "Login",
+    path: "/Emprunts",
+    name: "Emprunts",
     icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth",
+    component: Emprunts,
+    layout: "/admin",
   },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    component: Register,
-    layout: "/auth",
-  },
+
 ];
 export default routes;

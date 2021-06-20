@@ -171,7 +171,7 @@ var colors = {
     secondary: "#f4f5f7",
     info: "#11cdef",
     success: "#2dce89",
-    danger: "#f5365c",
+    danger: "yellowgreen",
     warning: "#fb6340",
   },
   black: "#12263F",
@@ -217,7 +217,7 @@ function chartOptions() {
             borderCapStyle: "rounded",
           },
           rectangle: {
-            backgroundColor: colors.theme["warning"],
+            backgroundColor: colors.theme["danger"],
           },
           arc: {
             backgroundColor: colors.theme["primary"],
@@ -319,7 +319,7 @@ let chartExample1 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                return "$" + value + "k";
+                return   value + "k"+ "   books";
               }
             },
           },
@@ -337,7 +337,7 @@ let chartExample1 = {
             content += label;
           }
 
-          content += "$" + yLabel + "k";
+          content +=  yLabel + "  k";
           return content;
         },
       },
@@ -348,8 +348,16 @@ let chartExample1 = {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
         {
-          label: "Performance",
+          label: "Emprunted",
           data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          color:'red',
+          borderColor: 'yellowgreen',
+        },
+        {
+          label: "restore",
+          data: [0, 15, 17, 36, 10, 15, 12, 18, 94],
+          color:'red',
+          borderColor: 'rgb(75, 192, 192)',
         },
       ],
     };
@@ -359,8 +367,14 @@ let chartExample1 = {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [
         {
-          label: "Performance",
-          data: [0, 20, 5, 25, 10, 30, 15, 40, 40],
+          label: "Emprunted",
+          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          color:'red',
+          borderColor: 'rgb(75, 192, 192)',
+        },
+        {
+          label: "restore",
+          data: [0, 15, 17, 36, 10, 15, 12, 18, 94],
         },
       ],
     };
