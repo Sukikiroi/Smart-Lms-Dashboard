@@ -54,7 +54,7 @@ const AdminNavbar = () => {
                     <img
                       alt="..."
                       src={
-                        require("../../assets/img/brand/argon-react.png")
+                        require("../../assets/img/brand/images-removebg-preview (1).png")
                           .default
                       }
                     />

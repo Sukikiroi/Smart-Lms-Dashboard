@@ -36,18 +36,18 @@ var routes = [
   },
   {
     path: "/Books",
-    name: "Books",
-    icon: "ni ni-planet text-blue",
+    name: "Books", 
+    icon: "ni ni-books text-blue",
     component: Books,
     layout: "/admin",
   },
-  {
-    path: "/Student",
-    name: "Student",
-    icon: "ni ni-pin-3 text-orange",
-    component: Icons,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/Student",
+  //   name: "Student",
+  //   icon: "ni ni-pin-3 text-orange",
+  //   component: Icons,
+  //   layout: "/admin",
+  // },
   {
     path: "/Agent-profile",
     name: "Agent Profile",
